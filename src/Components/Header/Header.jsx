@@ -1,6 +1,6 @@
 import React from "react";
 import "./header.scss";
-import "../Globals/Sass/Elements/Button/button.scss";
+import "../../Globals/Sass/Elements/Button/button.scss";
 
 export default function Header() {
   return (
