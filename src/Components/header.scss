@@ -1,0 +1,19 @@
+@use "../Globals/Sass/Mixins/mixin";
+
+.header {
+  background: #ffffff;
+  width: 100%;
+  box-shadow: 0 2.1px 8.4px rgba(0, 0, 0, 0.1), 0 6.6px 38.2px rgba(0, 0, 0, 0),
+    0 24px 120px rgba(0, 0, 0, 0.007);
+
+  .headerContent {
+    color: #707070;
+    padding: 1.2rem;
+    font-size: 1rem;
+    @include mixin.center(80%);
+    @include mixin.flex();
+  }
+}
+.headerOptions {
+  @include mixin.flex();
+}

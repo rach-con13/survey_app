@@ -1,0 +1,11 @@
+.btn {
+  border-style: None;
+  outline: none;
+  padding: 0.6rem 2rem;
+  font-weight: bold;
+  border-radius: 0.2rem;
+  &--secondary {
+    background: #2cac82;
+    color: white;
+  }
+}
