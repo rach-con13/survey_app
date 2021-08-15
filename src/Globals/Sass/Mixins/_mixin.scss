@@ -7,6 +7,14 @@
   width: $width;
   margin: 0 auto;
 }
+@mixin absolute($isCenter: true, $left: 50%, $top: 50%) {
+  position: absolute;
+  left: $left;
+  top: $top;
+  @if ($isCenter) {
+    transform: translate(-$left, -$top);
+  }
+}
 
 @mixin flex($align: baseline, $justify: space-between) {
   display: flex;

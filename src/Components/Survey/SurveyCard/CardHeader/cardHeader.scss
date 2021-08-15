@@ -1,0 +1,45 @@
+.card__header {
+  display: flex;
+
+  .card__header__options {
+    border: 1px solid #cfccca;
+    position: relative;
+    margin-left: 2rem;
+  }
+}
+.card__option {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-size: 0.9rem;
+  padding: 0rem 2rem;
+  white-space: nowrap;
+
+  &--dropdown {
+    padding: 1rem 0rem;
+    &:not(:first-child) {
+      border-top: 1px solid #cfccca;
+    }
+  }
+}
+.card__options__dropdown {
+  width: 100%;
+  margin-top: 5%;
+  background: white;
+  border: 1px solid #cfccca;
+  color: #9b9696;
+  position: absolute;
+  left: 0%;
+}
+.card__title {
+  border-top: none;
+  border-left: none;
+  border-radius: 0px;
+  border-right: none;
+  padding: 1rem;
+
+  &:focus {
+    outline: none;
+    border: 1px solid #cfccca;
+  }
+}

@@ -1,0 +1,31 @@
+.create_card {
+  width: 60%;
+  background: white;
+  margin: 0 auto;
+  margin-top: 24px;
+}
+.create_card_text {
+  padding: 1.2rem 0rem;
+  font-weight: normal;
+  color: #a6a4a2;
+  border-bottom: 1px solid #e4e1e1;
+}
+.question__options {
+  display: flex;
+  justify-content: space-between;
+}
+.question__option {
+  color: #a6a4a2;
+  flex: 1;
+  padding: 0.8rem 0rem;
+  border-radius: 0.1rem;
+
+  &:hover {
+    background: #2cac82;
+    color: white;
+  }
+
+  &:not(:first-child) {
+    border-left: 1px solid #e4e1e1;
+  }
+}
