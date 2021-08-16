@@ -1,14 +1,20 @@
 import React from "react";
+import { useParams } from "react-router-dom";
+import { createResult } from "../../../Lib/Firebase/FirebaseFunctions/DataFunctions";
 import "../SurveyCard/surveyCard.scss";
 import "./createSurveyCard.scss";
 export default function CreateSurveyCard({ setCards, cards }) {
+  const { id } = useParams();
   const selectQuestionOption = (e) => {
     let name = e.target.dataset.name;
-    if (name) {
-      let newCard = { type: name };
-      let updatedCards = [...cards, { ...newCard }];
-      setCards(updatedCards);
-    }
+    const data = {
+      surveyID: id,
+      questionType: name,
+      title: "",
+      answers: [],
+    };
+
+    createResult("question", data);
   };
   return (
     <div className="create_card">
@@ -16,12 +22,6 @@ export default function CreateSurveyCard({ setCards, cards }) {
         <p>Choose a template</p>
       </div>
       <div onClick={selectQuestionOption} className="question__options">
-        {/* <p data-name="multiple_choice" className="question__option">
-          Multiple Choices
-        </p>
-        <p data-name="range" className="question__option">
-          Range
-        </p> */}
         <p data-name="shortAnswer" className="question__option">
           Short Answer
         </p>

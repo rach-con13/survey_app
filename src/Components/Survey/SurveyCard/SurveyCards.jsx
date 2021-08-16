@@ -4,17 +4,27 @@ import { FormProvider, useForm } from "react-hook-form";
 import CreateSurveyCard from "../CreateSurveyCard/CreateSurveyCard";
 import SurveyCard from "./SurveyCard";
 import cardQuestionType from "../SurveyQuestions/Utils/SurveyQuestionType";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { SurveyContext } from "../../../Globals/Context/SurveyContext";
+import SurveyHeader from "./SurveyHeader";
+import { useEffect } from "react";
+import { db } from "../../../Lib/Firebase/FirebaseConfig";
+
 export default function SurveyCards(props) {
   const methods = useForm();
   const { setResults } = useContext(SurveyContext);
-  const [cards, setCards] = useState([
-    {
-      type: "shortAnswer",
-    },
-  ]);
+  const { id } = useParams();
+  const [cards, setCards] = useState([]);
+
+  useEffect(() => {
+    let unsubscribe = db.collection("question").onSnapshot((snapshot) => {
+      setCards(snapshot.docs);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const onSubmit = (data) => {
     let results = [];
@@ -32,6 +42,7 @@ export default function SurveyCards(props) {
 
   return (
     <>
+      <SurveyHeader />
       <FormProvider {...methods}>
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <div style={{ display: "flex", width: "60%", margin: "0 auto" }}>
@@ -46,9 +57,16 @@ export default function SurveyCards(props) {
             </Link>
           </div>
           {cards.map((card, index) => {
+            let cardData = card.data();
+
             return (
-              <SurveyCard index={index} key={index}>
-                {cardQuestionType(card.type, index)}
+              <SurveyCard
+                cardData={cardData}
+                id={card.id}
+                index={index}
+                key={index}
+              >
+                {cardQuestionType(cardData.questionType, index)}
               </SurveyCard>
             );
           })}
