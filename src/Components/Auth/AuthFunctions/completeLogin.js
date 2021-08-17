@@ -1,10 +1,15 @@
 import { loginUser } from "../../../Lib/Firebase/FirebaseFunctions/UserFunctions";
 
-export const completeLogin = async ({ email, password }, setMessage) => {
+export const completeLogin = async (
+  history,
+  { email, password },
+  setMessage
+) => {
   try {
     let loggedInUser = await loginUser(email, password);
     if (loggedInUser?.user) {
       setMessage("Login Successful");
+      history.push(`/surveys/${loggedInUser.user.uid}`);
     }
   } catch (error) {
     console.log(error);

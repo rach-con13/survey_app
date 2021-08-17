@@ -8,21 +8,39 @@ import UserHeaderOptions from "./UserHeaderOptions";
 
 export default function Header() {
   const [isLoggedIn, setLoggedIn] = useState(false);
-  const loggedIn = async () => {
-    try {
-      const currentUser = Firebase.auth().onAuthStateChanged();
-      setLoggedIn(currentUser);
-    } catch (err) {
-      return err;
-    }
-  };
+  const [email, setEmail] = useState("");
+
+  useEffect(() => {
+    const loggedIn = async () => {
+      Firebase.auth().onAuthStateChanged((user) => {
+        if (user) {
+          setEmail(user.email);
+          setLoggedIn(true);
+        } else {
+          setEmail("");
+          setLoggedIn(false);
+        }
+      });
+      // try {
+      //   const currentUser = await Firebase.auth().onAuthStateChanged();
+      //   currentUser ? setLoggedIn(true) : setLoggedIn(false);
+      //   console.log(currentUser);
+      // } catch (err) {
+      //   console.log(err);
+      //   return err;
+      // }
+    };
+    loggedIn();
+  }, []);
 
   return (
     <header className="header">
       <div className="headerContent">
         <h4 className="headerTitle">Survey Donkey</h4>
+
         {isLoggedIn ? (
           <div className="headerOptions">
+            <p style={{ marginRight: "0.8rem" }}>{email}</p>
             <button className="btn btn--secondary">Share</button>
           </div>
         ) : (

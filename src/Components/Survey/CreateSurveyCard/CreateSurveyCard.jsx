@@ -1,20 +1,34 @@
 import React from "react";
 import { useParams } from "react-router-dom";
+import { db } from "../../../Lib/Firebase/FirebaseConfig";
 import { createResult } from "../../../Lib/Firebase/FirebaseFunctions/DataFunctions";
 import "../SurveyCard/surveyCard.scss";
 import "./createSurveyCard.scss";
-export default function CreateSurveyCard({ setCards, cards }) {
+export default function CreateSurveyCard() {
   const { id } = useParams();
-  const selectQuestionOption = (e) => {
+  const selectQuestionOption = async (e) => {
     let name = e.target.dataset.name;
     const data = {
       surveyID: id,
       questionType: name,
       title: "",
-      answers: [],
     };
-
-    createResult("question", data);
+    try {
+      let newQuestion = await createResult("question", data);
+      let newAnswer = await createSubAnswer(newQuestion.id);
+      console.log(newQuestion);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const createSubAnswer = async (id) => {
+    // let answers = []
+    let createAnswer = await db
+      .collection("question")
+      .doc(id)
+      .collection("answers")
+      .add({ result: "" });
+    return createAnswer;
   };
   return (
     <div className="create_card">

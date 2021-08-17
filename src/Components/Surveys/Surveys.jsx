@@ -1,40 +1,37 @@
 import React from "react";
-import { useCallback } from "react";
 import { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
+import UseFirebaseUser from "../../Globals/Hooks/Firebase/useFirebaseUser";
+import UseRealTime from "../../Globals/Hooks/Firebase/useRealtime";
 import { db } from "../../Lib/Firebase/FirebaseConfig";
-import {
-  createSurvey,
-  getSurveys,
-} from "../../Lib/Firebase/FirebaseFunctions/SurveyFunctions";
+import { createResult } from "../../Lib/Firebase/FirebaseFunctions/DataFunctions";
 
 import "./surveys.scss";
-const createNewSurvey = () => {
-  createSurvey("Untitled Survey");
+const createNewSurvey = (uid) => {
+  const newSurvey = {
+    name: "Untitled Survey",
+    userID: uid,
+  };
+  createResult("survey", newSurvey);
 };
-export default function Surveys(props) {
-  const [surveys, setSurveys] = useState([]);
 
-  useEffect(() => {
-    let unsubscribe;
-    const getRealtimeSurveys = () => {
-      unsubscribe = db.collection("survey").onSnapshot((snapshot) => {
-        setSurveys(snapshot.docs);
-      });
-    };
-    getRealtimeSurveys();
-    return () => {
-      unsubscribe();
-    };
-  }, []);
+export default function Surveys(props) {
+  const { id } = useParams();
+  const location = useLocation();
+  const surveys = UseRealTime("survey", { field: "userID", equalTo: id });
+  console.log(location);
+
   return (
     <div className="container">
       <header className="surveys__header">
         <h2 className="surveys__title">My Surveys</h2>
         <div className="surveys__search">
           <input style={{ marginTop: "12px" }} className="card__field" />
-          <button onClick={createNewSurvey} className="btn btn--secondary">
+          <button
+            onClick={() => createNewSurvey(id)}
+            className="btn btn--secondary"
+          >
             Add Survey
           </button>
         </div>
@@ -46,7 +43,7 @@ export default function Surveys(props) {
 
             return (
               <>
-                <Link to={`survey/${survey.id}`}>
+                <Link to={`/survey/${survey.id}`}>
                   <div data-id={survey.id} className="survey__card" key={index}>
                     <p> {data.name}</p>
                   </div>
