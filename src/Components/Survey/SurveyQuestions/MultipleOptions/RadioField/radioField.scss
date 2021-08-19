@@ -1,0 +1,62 @@
+@use "../../../../../Globals/Sass/Mixins/mixin";
+
+.radio__name {
+  margin-left: 2.4rem;
+  margin-top: 0.1rem;
+  border: none;
+  transition: all 0.5s ease-out;
+  &:focus {
+    border: 1px solid #cfccca;
+    outline: None;
+    padding: 0.6rem 1.5rem;
+  }
+}
+
+.radio__item {
+  display: flex;
+  align-items: center;
+  position: relative;
+  &:not(:first-child) {
+    margin-top: 1.5rem;
+  }
+
+  .radio__label {
+    margin-left: 2.3rem;
+  }
+}
+.radio__check {
+  display: block;
+  height: 25px;
+  width: 25px;
+  transition: border 0.25s linear;
+  border: 1px solid #cfccca;
+  border-radius: 2rem;
+  position: absolute;
+  &::before {
+    content: "";
+    display: block;
+    width: 15px;
+    height: 15px;
+
+    border-radius: 100px;
+    @include mixin.absolute();
+  }
+}
+
+.radio {
+  position: absolute;
+  z-index: 10;
+  width: 25px;
+  height: 25px;
+  opacity: 0;
+  &:checked ~ .radio__check {
+    border: 1px solid #2cac82;
+  }
+  &:checked ~ .radio__check::before {
+    background: #2cac82;
+  }
+  &:checked ~ .radio__label {
+    color: #2cac82;
+    font-weight: 600;
+  }
+}

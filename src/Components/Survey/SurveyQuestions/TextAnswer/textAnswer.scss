@@ -1,0 +1,25 @@
+.card__description__container {
+  margin-top: 0.8rem;
+  width: 100%;
+  position: relative;
+  p {
+    position: absolute;
+    bottom: 10%;
+    right: 3%;
+    color: #d6d4d4;
+    font-weight: 600;
+  }
+  .card__description {
+    outline: none;
+    width: 100%;
+    resize: none;
+    position: relative;
+    border: 1px solid #cfccca;
+    &--long {
+      min-height: 150px;
+    }
+    &--short {
+      min-height: 40px;
+    }
+  }
+}

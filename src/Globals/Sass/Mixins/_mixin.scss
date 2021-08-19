@@ -1,0 +1,23 @@
+// @mixin shadow() {
+//   box-shadow: 0 2.1px 11.4px rgba(0, 0, 0, 0.1), 0 6.6px 38.2px rgba(0, 0, 0, 0),
+//     0 24px 171px rgba(0, 0, 0, 0.007);
+// }
+
+@mixin center($width) {
+  width: $width;
+  margin: 0 auto;
+}
+@mixin absolute($isCenter: true, $left: 50%, $top: 50%) {
+  position: absolute;
+  left: $left;
+  top: $top;
+  @if ($isCenter) {
+    transform: translate(-$left, -$top);
+  }
+}
+
+@mixin flex($align: baseline, $justify: space-between) {
+  display: flex;
+  align-items: $align;
+  justify-content: $justify;
+}
