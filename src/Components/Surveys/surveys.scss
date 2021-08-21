@@ -1,0 +1,33 @@
+@use "../../Globals/Sass/Mixins/mixin";
+.container {
+  @include mixin.center(60%);
+  margin-top: 2rem;
+}
+
+.surveys__header {
+}
+.surveys__search {
+  margin-top: 0.8rem;
+  display: flex;
+  text-align: right;
+}
+.surveys__title {
+  color: dimgrey;
+  font-size: 1.2rem;
+}
+.surveys__content {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 0.4rem;
+}
+.survey__card {
+  background: white;
+  border-radius: 0.2rem;
+  color: dimgrey;
+  padding: 1.2rem 1.2rem;
+  .p {
+    text-decoration: none;
+    color: dimgrey;
+  }
+}

@@ -4,17 +4,29 @@ import { FormProvider, useForm } from "react-hook-form";
 import CreateSurveyCard from "../CreateSurveyCard/CreateSurveyCard";
 import SurveyCard from "./SurveyCard";
 import cardQuestionType from "../SurveyQuestions/Utils/SurveyQuestionType";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { useContext } from "react";
 import { SurveyContext } from "../../../Globals/Context/SurveyContext";
+import SurveyHeader from "./SurveyHeader";
+import { useEffect } from "react";
+import { db } from "../../../Lib/Firebase/FirebaseConfig";
+import UseRealTime from "../../../Globals/Hooks/Firebase/useRealtime";
+
 export default function SurveyCards(props) {
   const methods = useForm();
   const { setResults } = useContext(SurveyContext);
-  const [cards, setCards] = useState([
-    {
-      type: "shortAnswer",
-    },
-  ]);
+  const { id } = useParams();
+  const cards = UseRealTime("question", { field: "surveyID", equalTo: id });
+
+  const createSubAnswer = async (id, data) => {
+    // let answers = []
+    let createAnswer = await db
+      .collection("question")
+      .doc(id)
+      .collection("answers")
+      .add({ result: data });
+    return createAnswer;
+  };
 
   const onSubmit = (data) => {
     let results = [];
@@ -26,17 +38,28 @@ export default function SurveyCards(props) {
         results.push(newResult);
       }
     }
-
-    setResults(results);
+    // map through cards
+    cards.map((card, index) => {
+      let id = card.id;
+      let currentQuestion = results[index];
+      try {
+        let addQuestionAnswer = createSubAnswer(id, currentQuestion);
+        console.log(addQuestionAnswer);
+      } catch (err) {
+        console.log(err);
+      }
+    });
+    // setResults(results);
   };
 
   return (
     <>
+      <SurveyHeader />
       <FormProvider {...methods}>
         <form className="form" onSubmit={methods.handleSubmit(onSubmit)}>
           <div style={{ display: "flex", width: "60%", margin: "0 auto" }}>
             <button className="btn btn--primary">Questions</button>
-            <Link to="/response">
+            <Link to={`/responses/${id}`}>
               <button
                 style={{ marginLeft: "0.6rem" }}
                 className="btn btn--primary"
@@ -45,23 +68,29 @@ export default function SurveyCards(props) {
               </button>
             </Link>
           </div>
-          {cards.map((card, index) => {
+          {cards?.map((card, index) => {
+            let cardData = card.data();
+
             return (
-              <SurveyCard index={index} key={index}>
-                {cardQuestionType(card.type, index)}
+              <SurveyCard
+                cardData={cardData}
+                id={card.id}
+                index={index}
+                key={index}
+              >
+                {cardQuestionType(cardData.questionType, index)}
               </SurveyCard>
             );
           })}
-          <CreateSurveyCard setCards={setCards} cards={cards} />
-          <Link to="/response">
-            <button
-              type="submit"
-              style={{ margin: "2rem 0rem", textAlign: "right" }}
-              className="btn btn--secondary"
-            >
-              Submit
-            </button>
-          </Link>
+          <CreateSurveyCard />
+
+          <button
+            type="submit"
+            style={{ margin: "2rem 0rem", textAlign: "right" }}
+            className="btn btn--secondary"
+          >
+            Submit
+          </button>
         </form>
       </FormProvider>
     </>

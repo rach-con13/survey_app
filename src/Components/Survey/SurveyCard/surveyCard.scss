@@ -4,6 +4,13 @@
   margin-top: 2rem;
 }
 
+.survey__title {
+  color: dimgrey;
+  font-size: 1.5rem;
+  text-align: left;
+  @include mixin.center(60%);
+  margin-top: 2rem;
+}
 .card {
   @include mixin.center(60%);
   padding: 2rem;
@@ -13,7 +20,7 @@
 
   &:not(:first-child) {
     border-top: 1px solid #e4e1e1;
-    margin-top: 2rem;
+    margin-top: 0.8rem;
   }
 }
 .card__field {

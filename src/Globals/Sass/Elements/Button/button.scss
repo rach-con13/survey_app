@@ -4,6 +4,10 @@
   padding: 0.6rem 2rem;
   font-weight: bold;
   border-radius: 0.2rem;
+  &--secondary-border {
+    color: #2cac82;
+    font-weight: 600;
+  }
   &--secondary {
     background: #2cac82;
     color: white;
