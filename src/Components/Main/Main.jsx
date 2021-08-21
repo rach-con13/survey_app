@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Switch, useHistory, useParams } from "react-router-dom";
+import { Route, Switch, useHistory } from "react-router-dom";
 import UseFirebaseUser from "src/Globals/Hooks/Firebase/useFirebaseUser";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
@@ -9,7 +9,7 @@ import SurveyResponse from "../Survey/SurveyResponses/surveyResponse";
 import SurveyCards from "../SurveyCard/SurveyCards";
 import Surveys from "../Surveys/Surveys";
 
-export default function Main(props) {
+export default function Main() {
   const history = useHistory();
   const { user } = UseFirebaseUser();
   useEffect(() => {

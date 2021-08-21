@@ -15,7 +15,6 @@ export default function CreateSurveyCard() {
     };
     try {
       let newQuestion = await createResult("question", data);
-      let newAnswer = await createSubAnswer(newQuestion.id);
     } catch (err) {
       console.log(err);
     }

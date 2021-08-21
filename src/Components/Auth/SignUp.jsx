@@ -1,7 +1,6 @@
 import React from "react";
 import AuthForm from "./Auth";
 
-import AuthField from "./AuthField";
 const SignUpFields = [
   {
     name: "email",
@@ -13,7 +12,7 @@ const SignUpFields = [
   },
 ];
 
-export default function SignUp(props) {
+export default function SignUp() {
   return (
     <AuthForm
       link="/login"

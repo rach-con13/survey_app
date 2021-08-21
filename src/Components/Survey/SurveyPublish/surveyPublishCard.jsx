@@ -3,6 +3,7 @@ import card from "src/Globals/Sass/Elements/Card/card.module.scss";
 import styles from "./surveyPublish.module.scss";
 import "src/Globals/Sass/Elements/Text/text.scss";
 import { useParams } from "react-router-dom";
+import PropTypes from "prop-types";
 export default function SurveyPublishCard(props) {
   const visibleClass = props.open ? styles.visible : styles.hidden;
   const { id } = useParams();
@@ -34,3 +35,7 @@ export default function SurveyPublishCard(props) {
     </>
   );
 }
+SurveyPublishCard.propTypes = {
+  open: PropTypes.bool,
+  setOpen: PropTypes.func,
+};

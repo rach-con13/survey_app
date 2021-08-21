@@ -4,7 +4,7 @@ import SurveyCard from "src/Components/SurveyCard/SurveyCard";
 import UseRealTime from "src/Globals/Hooks/Firebase/useRealtime";
 import cardQuestionType from "./Utils/SurveyQuestionType";
 
-export default function SurveyQuestions(props) {
+export default function SurveyQuestions() {
   const { id } = useParams();
   const cards = UseRealTime("question", { field: "surveyID", equalTo: id });
 
