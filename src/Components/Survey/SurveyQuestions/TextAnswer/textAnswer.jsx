@@ -1,11 +1,11 @@
 import React from "react";
-import { useEffect } from "react";
+
 import { useFormContext } from "react-hook-form";
 import styles from "../../../../Globals/Sass/Elements/Form/form.module.scss";
 import "./textAnswer.scss";
+import PropTypes from "prop-types";
 export default function TextAnswer(props) {
-  const { register, watch } = useFormContext();
-  const watchTextAnswer = watch(`answer-${props.id}`);
+  const { register } = useFormContext();
 
   return (
     <div className="card__description__container">
@@ -20,3 +20,7 @@ export default function TextAnswer(props) {
     </div>
   );
 }
+TextAnswer.propTypes = {
+  answerType: PropTypes.string, // returns type of answer ( long , short)
+  id: PropTypes.string,
+};

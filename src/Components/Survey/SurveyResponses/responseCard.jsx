@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import CardHeader from "src/Components/SurveyCard/CardHeader/CardHeader";
 import { db } from "src/Lib/Firebase/FirebaseConfig";
-import ResponseChart from "./responseChart";
 import styles from "./surveyResponse.module.scss";
 import card from "src/Globals/Sass/Elements/Card/card.module.scss";
 import useToggle from "src/Globals/Hooks/useToggle";
 import "src/Globals/Sass/Elements/Text/text.scss";
+import PropTypes from "prop-types";
 export default function ResponseCard(props) {
   const [answers, setAnswers] = useState([]);
   const { toggle, open } = useToggle();
@@ -39,7 +39,6 @@ export default function ResponseCard(props) {
         <div className={styles.answers}>
           {answers?.map((answer) => {
             let data = answer.data();
-
             if (data?.result?.answer !== null) {
               return (
                 <div key={answer.id} className={styles.answer__card}>
@@ -53,3 +52,6 @@ export default function ResponseCard(props) {
     </div>
   );
 }
+ResponseCard.propTypes = {
+  id: PropTypes.string,
+};

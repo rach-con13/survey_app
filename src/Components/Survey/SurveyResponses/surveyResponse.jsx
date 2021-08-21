@@ -1,13 +1,10 @@
 import React from "react";
-import { useContext } from "react";
 import { useParams } from "react-router-dom";
-import { SurveyContext } from "../../../Globals/Context/SurveyContext";
 import UseRealTime from "../../../Globals/Hooks/Firebase/useRealtime";
 import ResponseCard from "./responseCard";
 import card from "src/Globals/Sass/Elements/Card/card.module.scss";
 
 export default function SurveyResponse() {
-  const { surveyResults } = useContext(SurveyContext);
   const { id } = useParams();
   const questions = UseRealTime("question", { field: "surveyID", equalTo: id });
   return (

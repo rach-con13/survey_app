@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { getSurvey } from "src/Lib/Firebase/FirebaseFunctions/SurveyFunctions";
 import header from "./surveyHeader.module.scss";
 import "src/Globals/Sass/Elements/Text/text.scss";
+import PropTypes from "prop-types";
+
 export default function SurveyHeader(props) {
   let { id } = useParams();
   const [survey, setSurvey] = useState(null);
@@ -41,3 +43,7 @@ export default function SurveyHeader(props) {
     </div>
   );
 }
+
+SurveyHeader.propTypes = {
+  onClick: PropTypes.func, // click event for displaying SurveyPublish modal
+};

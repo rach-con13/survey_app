@@ -1,5 +1,7 @@
-import React, { useEffect } from "react";
-import { Route, Switch, useHistory, useParams } from "react-router-dom";
+import React from "react";
+import { useEffect } from "react";
+import { useState } from "react";
+import { Redirect, Route, Switch, useHistory } from "react-router-dom";
 import UseFirebaseUser from "src/Globals/Hooks/Firebase/useFirebaseUser";
 import Login from "../Auth/Login";
 import SignUp from "../Auth/SignUp";
@@ -9,19 +11,47 @@ import SurveyResponse from "../Survey/SurveyResponses/surveyResponse";
 import SurveyCards from "../SurveyCard/SurveyCards";
 import Surveys from "../Surveys/Surveys";
 
-export default function Main(props) {
+// const RedirectPage = () => {
+//   const { user } = UseFirebaseUser();
+// };
+
+export default function Main() {
   const history = useHistory();
-  const { user } = UseFirebaseUser();
+  const { user, loading } = UseFirebaseUser();
+  const [userID, setUserID] = useState(null);
   useEffect(() => {
-    if (user) {
-      history.push(`/surveys/${user.uid}`);
-    }
-  }, []);
+    const isLoggedIn = async () => {
+      const userStatus = await user;
+      userStatus && setUserID(userStatus.uid);
+    };
+    isLoggedIn();
+  });
+  // useEffect(() => {
+  //   console.log(user);
+  //   if (user) {
+  //     history.push(`/surveys/${user.uid}`);
+  //   }
+  // }, [user]);
   return (
     <>
       <div className="App">
         <Header />
         <Switch>
+          <Route
+            exact
+            path="/"
+            render={() => {
+              // once async data has loaded, check if user exists or not
+              return (
+                !loading &&
+                (user ? (
+                  <Redirect to={`/surveys/${user.uid}`} />
+                ) : (
+                  <Redirect to="/login" />
+                ))
+              );
+            }}
+          ></Route>
           <Route path="/responses/:id">
             <>
               <SurveyContent>

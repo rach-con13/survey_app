@@ -1,7 +1,6 @@
 import React from "react";
 import AuthForm from "./Auth";
 
-import AuthField from "./AuthField";
 const LoginFields = [
   {
     name: "email",
@@ -13,7 +12,7 @@ const LoginFields = [
   },
 ];
 
-export default function Login(props) {
+export default function Login() {
   return (
     <AuthForm
       link="/surveys"

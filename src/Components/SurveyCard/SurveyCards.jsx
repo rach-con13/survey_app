@@ -6,9 +6,8 @@ import { db } from "src/Lib/Firebase/FirebaseConfig";
 import UseRealTime from "src/Globals/Hooks/Firebase/useRealtime";
 import { useLocation, useParams } from "react-router-dom";
 import SurveyQuestions from "../Survey/SurveyQuestions/surveyQuestions";
-import { submitSurvey } from "./Utils/submitSurvey";
 
-export default function SurveyCards(props) {
+export default function SurveyCards() {
   const methods = useForm();
   const { id } = useParams();
   const { pathname } = useLocation();

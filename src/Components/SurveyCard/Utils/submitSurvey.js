@@ -1,5 +1,5 @@
 export const submitSurvey = (cards, data) => {
-  let results = [];
+  // let results = [];
   console.log({ data, cards });
   //   for (let i = 0; i <= cards.length; i++) {
   //     let newResult;

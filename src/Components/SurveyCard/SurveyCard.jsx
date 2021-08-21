@@ -5,6 +5,7 @@ import CardHeader from "./CardHeader/CardHeader";
 import styles from "src/Globals/Sass/Elements/Card/card.module.scss";
 import useToggle from "src/Globals/Hooks/useToggle";
 import { useLocation } from "react-router-dom";
+import PropTypes from "prop-types";
 
 export default function SurveyCard(props) {
   const method = useFormContext();
@@ -15,7 +16,7 @@ export default function SurveyCard(props) {
   const updateTitle = async () => {
     let title = method.getValues(`card-title-${props.index}`);
 
-    let updatedQuestion = await updateResult("question", props.id, {
+    await updateResult("question", props.id, {
       title,
     });
   };
@@ -36,3 +37,8 @@ export default function SurveyCard(props) {
     </div>
   );
 }
+SurveyCard.propTypes = {
+  index: PropTypes.number,
+  id: PropTypes.string,
+  children: PropTypes.node,
+};

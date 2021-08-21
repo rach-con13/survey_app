@@ -1,5 +1,6 @@
 import React from "react";
 import "./auth.scss";
+import PropTypes from "prop-types";
 export default function AuthField({ register, name, label }) {
   return (
     <div className="auth__field">
@@ -10,3 +11,9 @@ export default function AuthField({ register, name, label }) {
     </div>
   );
 }
+
+AuthField.propTypes = {
+  register: PropTypes.func,
+  name: PropTypes.string,
+  label: PropTypes.string,
+};

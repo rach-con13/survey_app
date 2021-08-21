@@ -1,21 +1,16 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./auth.scss";
-
 import AuthField from "./AuthField";
 import { completeLogin } from "./AuthFunctions/completeLogin";
 import { completeSignUp } from "./AuthFunctions/completeSignUp";
 import { useHistory } from "react-router-dom";
-
+import PropTypes from "prop-types";
 export default function AuthForm(props) {
   const [message, setMessage] = useState("");
   const history = useHistory();
 
-  const {
-    register,
-    formState: { errors },
-    handleSubmit,
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const completeAuth = (data) => {
     props.isLogin
@@ -52,3 +47,10 @@ export default function AuthForm(props) {
     </div>
   );
 }
+
+AuthForm.propTypes = {
+  isLogin: PropTypes.bool,
+  title: PropTypes.string,
+  fields: PropTypes.obj,
+  spanText: PropTypes.string,
+};
