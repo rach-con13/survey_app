@@ -1,0 +1,51 @@
+@use "src/Globals/Sass/Mixins/mixin";
+@use "src/Globals/Theme/spacing";
+@use "src/Globals/Theme/colors";
+.publishCard {
+  position: fixed;
+  left: 50%;
+  top: 50%;
+
+  transform: translate(-50%, -50%);
+  z-index: 4;
+  @include mixin.center(40%);
+
+  &.hidden {
+    display: none;
+  }
+  &.visible {
+    display: block;
+  }
+}
+
+.publish__link {
+  margin: spacing.Spacing(2);
+  background: colors.Color(true, "light");
+  padding: spacing.Spacing(2) spacing.Spacing(3);
+}
+.publish__btn {
+  background: colors.Color(false, "main");
+  color: colors.Color(true, "extraLight");
+  border: none;
+  outline: None;
+  padding: spacing.Spacing(1.5) spacing.Spacing(4);
+  margin-right: spacing.Spacing(2);
+  margin-bottom: spacing.Spacing(2);
+  border-radius: spacing.Spacing(0.5);
+  text-align: right;
+  font-weight: bold;
+}
+
+.card__bg {
+  position: fixed;
+  left: 0%;
+  top: 0%;
+
+  height: 100%;
+  width: 100%;
+  z-index: -1;
+}
+.bg__visible {
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}

@@ -1,0 +1,21 @@
+// COLORS
+$primary-colors: (
+  "extraLight": #fffefe,
+  "light": #efefef,
+  "main": #aeacac,
+  "dark": #888888,
+  "extraDark": #424141,
+);
+
+$secondary-colors: (
+  "light": #56dac0,
+  "main": #2cbda0,
+  "dark": #32917e,
+);
+
+@function Color($isPrimary, $value) {
+  @if $isPrimary {
+    @return map-get($primary-colors, $value);
+  }
+  @return map-get($secondary-colors, $value);
+}

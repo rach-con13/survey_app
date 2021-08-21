@@ -1,0 +1,8 @@
+$spacing: 8px;
+$spacing-ratio: 2;
+
+@function Spacing($value) {
+  @return ($spacing * $value);
+}
+
+
