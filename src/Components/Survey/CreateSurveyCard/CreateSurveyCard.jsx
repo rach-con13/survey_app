@@ -1,6 +1,5 @@
 import React from "react";
 import { useParams } from "react-router-dom";
-import { db } from "../../../Lib/Firebase/FirebaseConfig";
 import { createResult } from "../../../Lib/Firebase/FirebaseFunctions/DataFunctions";
 import "../../SurveyCard/surveyCard.scss";
 import "./createSurveyCard.scss";
@@ -14,20 +13,20 @@ export default function CreateSurveyCard() {
       title: "",
     };
     try {
-      let newQuestion = await createResult("question", data);
+      await createResult("question", data);
     } catch (err) {
       console.log(err);
     }
   };
-  const createSubAnswer = async (id) => {
-    // let answers = []
-    let createAnswer = await db
-      .collection("question")
-      .doc(id)
-      .collection("answers")
-      .add({ result: "" });
-    return createAnswer;
-  };
+  // const createSubAnswer = async (id) => {
+  //   // let answers = []
+  //   let createAnswer = await db
+  //     .collection("question")
+  //     .doc(id)
+  //     .collection("answers")
+  //     .add({ result: "" });
+  //   return createAnswer;
+  // };
   return (
     <div className="create_card">
       <div className="create_card_text">

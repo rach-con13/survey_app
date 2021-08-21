@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 import "./header.scss";
 import "src/Globals/Sass/Elements/Button/button.scss";
-import Firebase from "src/Lib/Firebase/FirebaseConfig";
-import { useEffect } from "react";
 import UserHeaderOptions from "./UserHeaderOptions";
 import UseFirebaseUser from "src/Globals/Hooks/Firebase/useFirebaseUser";
 

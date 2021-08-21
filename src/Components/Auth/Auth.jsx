@@ -12,6 +12,7 @@ export default function AuthForm(props) {
   const [message, setMessage] = useState("");
   const history = useHistory();
 
+
   const {
     register,
     formState: { errors },
@@ -19,6 +20,7 @@ export default function AuthForm(props) {
   } = useForm({
     resolver: yupResolver(authSchema),
   });
+
 
   const completeAuth = async (data) => {
     props.isLogin
