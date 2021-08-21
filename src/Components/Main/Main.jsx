@@ -11,9 +11,13 @@ import SurveyResponse from "../Survey/SurveyResponses/surveyResponse";
 import SurveyCards from "../SurveyCard/SurveyCards";
 import Surveys from "../Surveys/Surveys";
 
+// const RedirectPage = () => {
+//   const { user } = UseFirebaseUser();
+// };
+
 export default function Main() {
   const history = useHistory();
-  const { user } = UseFirebaseUser();
+  const { user, loading } = UseFirebaseUser();
   const [userID, setUserID] = useState(null);
   useEffect(() => {
     const isLoggedIn = async () => {
@@ -37,7 +41,15 @@ export default function Main() {
             exact
             path="/"
             render={() => {
-              return userID && <Redirect to={`/surveys/${userID}`} />;
+              // once async data has loaded, check if user exists or not
+              return (
+                !loading &&
+                (user ? (
+                  <Redirect to={`/surveys/${user.uid}`} />
+                ) : (
+                  <Redirect to="/login" />
+                ))
+              );
             }}
           ></Route>
           <Route path="/responses/:id">
