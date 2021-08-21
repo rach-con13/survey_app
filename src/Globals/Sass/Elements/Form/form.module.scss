@@ -11,12 +11,24 @@
   transition: border 0.2s linear;
   @include typography.getText("subHeading");
 
+  &.danger {
+    border: 1px solid crimson;
+    color: crimson;
+  }
+}
+.focus {
   &:focus {
     outline: None;
     box-shadow: inset 0 0px 4px colors.Color(true, "light");
-    background: transparent;
+    background: colors.Color(true, "extraLight");
     border: 1px solid colors.Color(true, "light");
   }
+}
+
+.unfocus {
+  box-shadow: inset 0 0px 4px colors.Color(true, "light");
+  background: colors.Color(true, "extraLight");
+  border: 1px solid colors.Color(true, "light");
 }
 .form__text {
   resize: none;

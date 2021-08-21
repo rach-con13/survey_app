@@ -1,5 +1,6 @@
 @use "../../../Theme/colors";
 @use "../../Mixins/mixin";
+@use "../../../Theme/typography";
 @use "../../../Theme/spacing";
 
 .cards__container {
@@ -42,10 +43,6 @@
     @include mixin.center(90%);
     padding: spacing.Spacing(1) 0;
   }
-
-  // @media (min-width: 500px) {
-
-  // }
 }
 
 .card__icon {
