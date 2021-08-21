@@ -1,0 +1,29 @@
+@use "src/Globals/Sass/Mixins/mixin.scss";
+@use "src/Globals/Theme/spacing";
+@use "src/Globals/Theme/typography";
+@use "src/Globals/Theme/colors";
+.survey__header {
+  @include mixin.center(80%);
+  margin-top: spacing.Spacing(4);
+  .header__content {
+    @include mixin.flex(baseline, space-between);
+  }
+}
+
+.text__content {
+  @include mixin.flex(center, initial);
+}
+.survey__icon {
+  border: none;
+  margin-left: spacing.Spacing(2);
+}
+.survey__option {
+  &:not(:first-child) {
+    margin-left: spacing.Spacing(2);
+  }
+  &:hover,
+  &--selected {
+    color: colors.Color(false, "dark");
+    border-bottom: 3px solid colors.Color(false, "dark");
+  }
+}

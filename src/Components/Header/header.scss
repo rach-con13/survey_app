@@ -1,15 +1,14 @@
-@use "../../Globals/Sass/Mixins/mixin";
-
+@use "src/Globals/Sass/Mixins/mixin";
+@use "src/Globals/Theme/spacing";
+@use "src/Globals/Theme/colors";
 .header {
-  background: #ffffff;
+  background: colors.Color(true, "extraLight");
   width: 100%;
-  box-shadow: 0 2.1px 8.4px rgba(0, 0, 0, 0.1), 0 6.6px 38.2px rgba(0, 0, 0, 0),
-    0 24px 120px rgba(0, 0, 0, 0.007);
+  box-shadow: 2px 0px 8px 10px colors.Color(true, "light");
 
   .headerContent {
     color: #707070;
-    padding: 1.2rem;
-    font-size: 1rem;
+    padding: spacing.Spacing(2) 0px;
     @include mixin.center(80%);
     @include mixin.flex();
   }

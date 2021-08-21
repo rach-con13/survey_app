@@ -1,0 +1,83 @@
+@use "./colors";
+
+// TYPOGRAPHY
+$base-size: 0.85em;
+$type-scale-ratio: 1.125;
+
+$typographyWeights: (
+  "heading": 600,
+  "subHeading": 500,
+  "body": 400,
+  "caption": 500,
+);
+
+@function getTypographySizes($ratio) {
+  $typographySizes: (
+    "subHeading": (
+      $base-size * $ratio,
+    ),
+    "heading": (
+      $base-size * $ratio * $ratio * $ratio,
+    ),
+    "body": $base-size,
+    "caption": $base-size/$ratio,
+  );
+  @return $typographySizes;
+}
+
+$typographyColors: (
+  "heading": colors.Color(true, "extraDark"),
+  "subHeading": colors.Color(true, "dark"),
+  "body": colors.Color(true, "extraDark"),
+  "caption": colors.Color(true, "main"),
+);
+
+@function getTextValue($obj, $value) {
+  @return map-get($map: $obj, $key: $value);
+}
+
+@function fontSize($ratio: 0.4, $value) {
+  $typographySizes: getTypographySizes($ratio);
+  @return getTextValue($typographySizes, $value);
+}
+
+@function textColor($value) {
+  @return getTextValue($typographyColors, $value);
+}
+
+@function textWeight($value) {
+  @return getTextValue($typographyWeights, $value);
+}
+
+@mixin getText($value, $level: 2) {
+  @if $level == 1 {
+    font-size: fontSize(1, $value);
+  }
+  @if $level == 2 {
+    font-size: fontSize(1.125, $value);
+  }
+  @if $level == 3 {
+    font-size: fontSize(1.2, $value);
+  }
+  @if $level == 4 {
+    font-size: fontSize(1.3, $value);
+  }
+  color: textColor($value);
+  text-align: left;
+  font-weight: textWeight($value);
+}
+
+@mixin queries($value) {
+  @media (min-width: 2000px) {
+    @include getText($value, 4);
+  }
+  @media (max-width: 1200px) {
+    @include getText($value, 3);
+  }
+  @media (max-width: 800px) {
+    @include getText($value, 2);
+  }
+  @media (max-width: 500px) {
+    @include getText($value, 1);
+  }
+}

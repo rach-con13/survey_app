@@ -36,7 +36,6 @@ export const updateResult = async (collection, id, values) => {
 
     return updatedResult;
   } catch (err) {
-    console.log(err);
     return err;
   }
 };

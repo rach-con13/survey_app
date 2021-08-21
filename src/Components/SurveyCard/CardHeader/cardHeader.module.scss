@@ -1,0 +1,22 @@
+@use "src/Globals/Sass/Mixins/mixin";
+@use "src/Globals/Theme/spacing";
+.options {
+  @include mixin.flex(center);
+  padding-left: 24px;
+  .currentOption {
+    margin-right: spacing.Spacing(2);
+  }
+}
+
+.icon:not(:last-child) {
+  margin-right: spacing.Spacing(4);
+}
+
+.open__icon {
+  padding-bottom: spacing.Spacing(2);
+  text-align: center;
+}
+.input__box {
+  width: 100%;
+  @include mixin.flex(center, initial);
+}

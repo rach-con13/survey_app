@@ -20,7 +20,6 @@ export default function Surveys(props) {
   const { id } = useParams();
   const location = useLocation();
   const surveys = UseRealTime("survey", { field: "userID", equalTo: id });
-  console.log(location);
 
   return (
     <div className="container">
@@ -43,7 +42,7 @@ export default function Surveys(props) {
 
             return (
               <>
-                <Link to={`/survey/${survey.id}`}>
+                <Link to={`/survey/${survey.id}/edit`}>
                   <div data-id={survey.id} className="survey__card" key={index}>
                     <p> {data.name}</p>
                   </div>

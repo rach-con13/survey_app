@@ -1,0 +1,21 @@
+@use "src/Globals/Sass/Mixins/mixin";
+@use "src/Globals/Theme/colors";
+@use "src/Globals/Theme/typography";
+@use "src/Globals/Theme/spacing";
+
+.container {
+  
+}
+.answers {
+  margin-top: spacing.Spacing(4);
+  padding-bottom: spacing.Spacing(4);
+  .answer__card {
+    background: colors.Color(true, "light");
+    padding: spacing.Spacing(2) spacing.Spacing(2);
+    @include mixin.center(80%);
+
+    &:not(:first-child) {
+      margin-top: spacing.Spacing(1);
+    }
+  }
+}

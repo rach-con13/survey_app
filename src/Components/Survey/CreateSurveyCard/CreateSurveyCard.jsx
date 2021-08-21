@@ -2,7 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { db } from "../../../Lib/Firebase/FirebaseConfig";
 import { createResult } from "../../../Lib/Firebase/FirebaseFunctions/DataFunctions";
-import "../SurveyCard/surveyCard.scss";
+import "../../SurveyCard/surveyCard.scss";
 import "./createSurveyCard.scss";
 export default function CreateSurveyCard() {
   const { id } = useParams();
@@ -16,7 +16,6 @@ export default function CreateSurveyCard() {
     try {
       let newQuestion = await createResult("question", data);
       let newAnswer = await createSubAnswer(newQuestion.id);
-      console.log(newQuestion);
     } catch (err) {
       console.log(err);
     }

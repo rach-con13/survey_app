@@ -1,0 +1,52 @@
+@use "../../../Theme/colors";
+@use "../../Mixins/mixin";
+@use "../../../Theme/spacing";
+
+.cards__container {
+  &__lg {
+    @include mixin.center(80%);
+    margin-top: spacing.Spacing(4);
+  }
+  &__md {
+    @include mixin.center(60%);
+    margin-top: spacing.Spacing(4);
+
+    @media (max-width: 800px) {
+      @include mixin.center(80%);
+      margin-top: spacing.Spacing(4);
+    }
+  }
+
+  @media (max-width: 500px) {
+    @include mixin.center(90%);
+    margin-top: spacing.Spacing(4);
+  }
+}
+
+.card {
+  background: colors.Color(true, "extraLight");
+  @include mixin.center(100%);
+
+  &:not(:first-child) {
+    margin-top: spacing.Spacing(2);
+  }
+  .card__header {
+    border-bottom: 1px solid colors.Color(true, "light");
+    .header__inner {
+      padding: spacing.Spacing(1) 0px;
+      @include mixin.center(90%);
+      @include mixin.flex(center);
+    }
+  }
+  .card__content {
+    @include mixin.center(90%);
+    padding: spacing.Spacing(1) 0;
+  }
+
+  // @media (min-width: 500px) {
+
+  // }
+}
+
+.card__icon {
+}

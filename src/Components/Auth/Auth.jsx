@@ -1,12 +1,11 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import "./auth.scss";
-import "../Survey/SurveyCard/surveyCard.scss";
 
 import AuthField from "./AuthField";
 import { completeLogin } from "./AuthFunctions/completeLogin";
 import { completeSignUp } from "./AuthFunctions/completeSignUp";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 export default function AuthForm(props) {
   const [message, setMessage] = useState("");

@@ -1,47 +1,27 @@
 import React, { useState } from "react";
 import "./header.scss";
-import "../../Globals/Sass/Elements/Button/button.scss";
-import { getSignedInUser } from "../../Lib/Firebase/FirebaseFunctions/UserFunctions";
-import Firebase from "../../Lib/Firebase/FirebaseConfig";
+import "src/Globals/Sass/Elements/Button/button.scss";
+import Firebase from "src/Lib/Firebase/FirebaseConfig";
 import { useEffect } from "react";
 import UserHeaderOptions from "./UserHeaderOptions";
+import UseFirebaseUser from "src/Globals/Hooks/Firebase/useFirebaseUser";
 
 export default function Header() {
-  const [isLoggedIn, setLoggedIn] = useState(false);
-  const [email, setEmail] = useState("");
-
-  useEffect(() => {
-    const loggedIn = async () => {
-      Firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          setEmail(user.email);
-          setLoggedIn(true);
-        } else {
-          setEmail("");
-          setLoggedIn(false);
-        }
-      });
-      // try {
-      //   const currentUser = await Firebase.auth().onAuthStateChanged();
-      //   currentUser ? setLoggedIn(true) : setLoggedIn(false);
-      //   console.log(currentUser);
-      // } catch (err) {
-      //   console.log(err);
-      //   return err;
-      // }
-    };
-    loggedIn();
-  }, []);
+  const { user } = UseFirebaseUser();
 
   return (
     <header className="header">
       <div className="headerContent">
-        <h4 className="headerTitle">Survey Donkey</h4>
+        <h4 className="text text--heading">Survey Donkey</h4>
 
-        {isLoggedIn ? (
+        {user ? (
           <div className="headerOptions">
-            <p style={{ marginRight: "0.8rem" }}>{email}</p>
-            <button className="btn btn--secondary">Share</button>
+            <p
+              className="text text--subHeading"
+              style={{ marginRight: "0.8rem" }}
+            >
+              {user?.email}
+            </p>
           </div>
         ) : (
           <UserHeaderOptions />
