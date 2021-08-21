@@ -7,6 +7,7 @@ export const completeSignUp = async ({ email, password }, setMessage) => {
       setMessage("Successfully created Account");
     }
   } catch (err) {
+    console.log(err);
     return err;
   }
 };

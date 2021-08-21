@@ -1,4 +1,5 @@
 @use "../../Globals/Sass/Mixins/mixin";
+@use "src/Globals/Theme/colors";
 .container {
   @include mixin.center(60%);
   margin-top: 2rem;
@@ -7,9 +8,20 @@
 .surveys__header {
 }
 .surveys__search {
-  margin-top: 0.8rem;
   display: flex;
+  align-items: baseline;
   text-align: right;
+}
+.survey__addBtn {
+  background: colors.Color(false, "main");
+  color: colors.Color(true, "extraLight");
+  border-style: None;
+  height: 100%;
+  display: block;
+  width: 20%;
+  border-radius: 0.2rem;
+  padding: 0.8rem 0.2rem;
+  margin-left: 0.4rem;
 }
 .surveys__title {
   color: dimgrey;
@@ -19,15 +31,21 @@
   margin-top: 2rem;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  grid-gap: 0.4rem;
+  grid-gap: 0.7rem;
 }
 .survey__card {
   background: white;
   border-radius: 0.2rem;
   color: dimgrey;
-  padding: 1.2rem 1.2rem;
+  padding: 1.2rem 0rem;
+
   .p {
     text-decoration: none;
     color: dimgrey;
   }
+}
+
+.survey__name {
+  color: dimgrey;
+  text-decoration: None;
 }

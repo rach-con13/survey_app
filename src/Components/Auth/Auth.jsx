@@ -6,13 +6,21 @@ import { completeLogin } from "./AuthFunctions/completeLogin";
 import { completeSignUp } from "./AuthFunctions/completeSignUp";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import { authSchema } from "./AuthFunctions/authValidation";
+import { yupResolver } from "@hookform/resolvers/yup";
 export default function AuthForm(props) {
   const [message, setMessage] = useState("");
   const history = useHistory();
 
-  const { register, handleSubmit } = useForm();
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+  } = useForm({
+    resolver: yupResolver(authSchema),
+  });
 
-  const completeAuth = (data) => {
+  const completeAuth = async (data) => {
     props.isLogin
       ? completeLogin(history, data, setMessage)
       : completeSignUp(data, setMessage);
@@ -28,21 +36,22 @@ export default function AuthForm(props) {
       </header>
       <form onSubmit={handleSubmit(completeAuth)} className="auth__form">
         {props.fields.map((field, index) => {
+          let errorMessage = errors && errors[field.name]?.message;
+
           return (
             <AuthField
               key={index}
               label={field.label}
               name={field.name}
               register={register(field.name)}
+              error={errorMessage}
             />
           );
         })}
-
+        {console.log(message)};
         <button style={{ marginTop: "0.9rem" }} className="btn btn--secondary">
           {props.title}
         </button>
-
-        <p>{message}</p>
       </form>
     </div>
   );

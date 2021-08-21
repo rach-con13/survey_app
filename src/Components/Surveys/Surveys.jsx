@@ -4,7 +4,7 @@ import { Link, useLocation, useParams } from "react-router-dom";
 import { useState } from "react/cjs/react.development";
 import UseFirebaseUser from "../../Globals/Hooks/Firebase/useFirebaseUser";
 import UseRealTime from "../../Globals/Hooks/Firebase/useRealtime";
-import { db } from "../../Lib/Firebase/FirebaseConfig";
+import form from "src/Globals/Sass/Elements/Form/form.module.scss";
 import { createResult } from "../../Lib/Firebase/FirebaseFunctions/DataFunctions";
 
 import "./surveys.scss";
@@ -26,10 +26,15 @@ export default function Surveys(props) {
       <header className="surveys__header">
         <h2 className="surveys__title">My Surveys</h2>
         <div className="surveys__search">
-          <input style={{ marginTop: "12px" }} className="card__field" />
+          <input
+            aria-label="search"
+            placeholder="ex. Untitled"
+            style={{ marginTop: "12px" }}
+            className={`${form.form__field} ${form.unfocus}`}
+          />
           <button
             onClick={() => createNewSurvey(id)}
-            className="btn btn--secondary"
+            className="survey__addBtn"
           >
             Add Survey
           </button>
@@ -42,11 +47,14 @@ export default function Surveys(props) {
 
             return (
               <>
-                <Link to={`/survey/${survey.id}/edit`}>
-                  <div data-id={survey.id} className="survey__card" key={index}>
-                    <p> {data.name}</p>
-                  </div>
-                </Link>
+                <div data-id={survey.id} className="survey__card" key={index}>
+                  <Link
+                    style={{ display: "inline-block" }}
+                    to={`/survey/${survey.id}/edit`}
+                  >
+                    <p className="survey__name"> {data.name}</p>
+                  </Link>
+                </div>
               </>
             );
           })}

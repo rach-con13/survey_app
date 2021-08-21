@@ -11,10 +11,6 @@ import SurveyResponse from "../Survey/SurveyResponses/surveyResponse";
 import SurveyCards from "../SurveyCard/SurveyCards";
 import Surveys from "../Surveys/Surveys";
 
-// const RedirectPage = () => {
-//   const { user } = UseFirebaseUser();
-// };
-
 export default function Main() {
   const history = useHistory();
   const { user, loading } = UseFirebaseUser();
@@ -26,12 +22,7 @@ export default function Main() {
     };
     isLoggedIn();
   });
-  // useEffect(() => {
-  //   console.log(user);
-  //   if (user) {
-  //     history.push(`/surveys/${user.uid}`);
-  //   }
-  // }, [user]);
+
   return (
     <>
       <div className="App">

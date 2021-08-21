@@ -1,0 +1,26 @@
+@use "../Text/text.scss";
+@use "../../../Theme/spacing";
+@use "../../../Theme/typography";
+@use "../../../Theme/colors";
+
+$errorCols: (
+  "danger": #fa5c5c,
+  "success": green,
+  "warning": gold,
+);
+
+.error__card {
+  margin-top: spacing.Spacing(2);
+  background: colors.Color(true, "extraLight");
+  padding: spacing.Spacing(2) spacing.Spacing(4);
+  text-align: left;
+  &--danger {
+    @extend .error__card;
+    color: map-get($errorCols, "danger");
+    border: 2px solid map-get($errorCols, "danger");
+  }
+  .error__message {
+    font-size: typography.fontSize(1.125, "body");
+    font-weight: 600;
+  }
+}

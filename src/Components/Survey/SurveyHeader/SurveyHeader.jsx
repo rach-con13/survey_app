@@ -8,6 +8,7 @@ import PropTypes from "prop-types";
 export default function SurveyHeader(props) {
   let { id } = useParams();
   const [survey, setSurvey] = useState(null);
+  const [currentHeaderItem, setCurrentItem] = useState("survey");
 
   useEffect(async () => {
     const getSelectedSurvey = await getSurvey(id);
@@ -26,12 +27,22 @@ export default function SurveyHeader(props) {
         </div>
         <div className={header.text__content}>
           <Link to={`/survey/${id}/edit`}>
-            <p className={`text--subHeading ${header.survey__option}`}>
+            <p
+              onClick={() => setCurrentItem("survey")}
+              className={`text--subHeading ${header.survey__option} ${
+                currentHeaderItem === "survey" && header.selected
+              }`}
+            >
               Questions
             </p>
           </Link>
           <Link to={`/responses/${id}/edit`}>
-            <p className={`text--subHeading ${header.survey__option}`}>
+            <p
+              onClick={() => setCurrentItem("response")}
+              className={`text--subHeading ${header.survey__option} ${
+                currentHeaderItem === "response" && header.selected
+              }`}
+            >
               Results
             </p>
           </Link>

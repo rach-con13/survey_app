@@ -8,11 +8,12 @@ export const completeLogin = async (
   try {
     let loggedInUser = await loginUser(email, password);
     if (loggedInUser?.user) {
-      setMessage("Login Successful");
+      setMessage({ error: false, message: "Login Successful" });
       history.push(`/surveys/${loggedInUser.user.uid}`);
     }
   } catch (error) {
     console.log(error);
-    return error;
+
+    setMessage({ error: true, message: error });
   }
 };

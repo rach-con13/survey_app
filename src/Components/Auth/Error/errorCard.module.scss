@@ -1,0 +1,44 @@
+@use "src/Globals/Sass/Elements/Text/text.scss";
+@use "src/Globals/Theme/spacing";
+@use "src/Globals/Theme/typography";
+@use "src/Globals/Theme/colors";
+
+$errorCols: (
+  "danger": #fa5c5c,
+  "success": green,
+  "warning": gold,
+);
+
+.error__card {
+  margin-top: spacing.Spacing(2);
+  display: flex;
+  align-items: center;
+
+  padding: spacing.Spacing(2) spacing.Spacing(4);
+  text-align: left;
+
+  .error__message {
+    font-size: typography.fontSize(1.125, "body");
+    font-weight: 600;
+    margin-left: spacing.Spacing(2);
+  }
+  .error__icon {
+    font-size: 1.2rem;
+  }
+}
+
+.danger {
+  @extend .error__card;
+  color: #d64d4d;
+  border: 1px solid map-get($errorCols, "danger");
+}
+.warning {
+  @extend .error__card;
+  color: #f2bf50;
+  border: 1px solid #deb04b;
+}
+.success {
+  @extend .error__card;
+  color: #51d673;
+  border: 1px solid #43b560;
+}

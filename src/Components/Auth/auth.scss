@@ -10,6 +10,16 @@
     @include mixin.center(80%);
   }
 }
+.auth__label {
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.error__message {
+  margin-top: 0.6rem;
+  color: crimson;
+  font-size: 0.8rem;
+}
 .auth__title {
   text-align: left;
   font-size: 1.2rem;
