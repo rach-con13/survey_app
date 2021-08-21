@@ -3,7 +3,7 @@ import "./header.scss";
 import "../../Globals/Sass/Elements/Button/button.scss";
 import { Link } from "react-router-dom";
 
-export default function UserHeaderOptions(props) {
+export default function UserHeaderOption() {
   return (
     <>
       <div>

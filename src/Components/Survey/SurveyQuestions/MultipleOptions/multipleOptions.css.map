@@ -1,9 +1,0 @@
-{
-    "version": 3,
-    "mappings": "AAAA,IAAI,CAAJ,4CAAI;AAEJ,AAAA,UAAU,CAAC;EACT,UAAU,EAAE,MAAM;CACnB",
-    "sources": [
-        "multipleOptions.scss"
-    ],
-    "names": [],
-    "file": "multipleOptions.css"
-}

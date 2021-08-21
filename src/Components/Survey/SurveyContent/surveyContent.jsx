@@ -1,11 +1,9 @@
-import React from "react";
-import { Route, useLocation } from "react-router-dom";
-import { useState } from "react/cjs/react.development";
-import SurveyCard from "src/Components/SurveyCard/SurveyCard";
+import React, { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 import SurveyHeader from "../SurveyHeader/SurveyHeader";
 import SurveyPublishCard from "../SurveyPublish/surveyPublishCard";
-import SurveyResponse from "../SurveyResponses/surveyResponse";
-
+import PropTypes from "prop-types";
 export default function SurveyContent(props) {
   const [open, setOpen] = useState(false);
   const { pathname } = useLocation();
@@ -19,3 +17,6 @@ export default function SurveyContent(props) {
     </>
   );
 }
+SurveyContent.propTypes = {
+  children: PropTypes.node,
+};
