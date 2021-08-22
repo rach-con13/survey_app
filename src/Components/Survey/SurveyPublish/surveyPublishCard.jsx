@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 export default function SurveyPublishCard(props) {
   const visibleClass = props.open ? styles.visible : styles.hidden;
   const { id } = useParams();
-  const surveyLink = `http://localhost:3000/survey/${id}`;
+  const surveyLink = `https://surveydonkeyapp.netlify.app/survey/${id}`;
   return (
     <>
       <div
